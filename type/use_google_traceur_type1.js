@@ -14,3 +14,4 @@ class Calc {
 
 var c = new Calc();
 console.log(c.add(41,5));
+document.write(c.add(41,6));
