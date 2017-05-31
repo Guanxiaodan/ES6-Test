@@ -85,9 +85,50 @@ console.log(i); // 报错
 ```
 
 
-## 块级作用域与函数声明
+## 块级作用域{}与函数声明
 ES5规定：函数只能在顶级作用域和函数作用域中声明，不能在块级作用域中声明。
+
 ES6规定：在块级作用域中，可以声明函数，声明行为类似于let，在块级作用域外不能被调用。
+```angular2html
+/*
+* ES5环境中打印出 I am inside!
+*/ 
+function f() { console.log('I am outside!'); }
+
+(function () {
+  if (false) {
+    // 重复声明一次函数f
+    function f() { console.log('I am inside!'); }
+  }
+
+  f();
+}());
+
+/*
+* ES6环境中打印出 I am outside!
+*/ 
+function f() { console.log('I am outside!'); }
+
+(function () {
+  if (false) {
+    // 重复声明一次函数f
+    function f() { console.log('I am inside!'); }
+  }
+
+  f();
+}());
+```
+
+> 但是：浏览器(ES6环境的浏览器)为了兼容老代码，有了一些自己的行为方式：
+>
+> 1.允许在块级作用域内声明变量（兼容ES6）。
+>
+> 2.函数声明类似于var,即会提升到全局或函数作用域或块级作用域的头部（兼容ES5）。
+
+为了避免麻烦，尽量不要在块级作用域中声明函数，如果必须声明函数，也好尽量使用函数表达式，而不是函数声明式
+
+> 注：块级作用域指的是大括号{}
+
 
 
 
