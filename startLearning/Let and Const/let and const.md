@@ -129,7 +129,61 @@ function f() { console.log('I am outside!'); }
 
 > 注：块级作用域指的是大括号{}
 
+> 注：本质上，块级作用域是一个表达式，封装了多个操作，没有返回值
 
+## do表达式（提案）
+为了解决块级作用域没有返回值的问题.目前只是提案。后续补充吧。。。
+
+## const
+const声明一个常量，一旦声明，常量的值就不能改变。所以一旦声明了，就得赋值，不能留到之后赋值，不然会报错。
+
+
+const的作用域与let相同。
+
+如果给const赋值了一个数组或对象，则只要不是重新赋值，则数组和对象还是能增删元素和属性的。
+
+
+## ES6声明变量的方式
+ES5的声明变量有两种： var , function
+
+ES6的声明变量有六种： var , function , let , const , import , class
+
+## 顶层对象的属性
+浏览器的顶层对象》》》》window
+
+node的顶层对象》》》》global
+
+ES5的顶层对象的属性与全局变量等价，即：
+```angular2html
+window.a = 1;
+a // 1
+
+a = 2;
+window.a // 2
+```
+这样是不合理的。
+
+所以，ES6规定：var ， function 定义的全局变量，依旧是顶级对象的属性。但是，let , const , class定义的全局变量，就不是顶级对象的属性了。
+
+ eg:
+```angular2html
+var g = 23;
+console.log(window.g); // 23
+let x = 45;
+console.log(window.x); // undefined
+```
+ 
+
+## global对象（提案）
+前面说的，浏览器的顶级对象是window，node的顶级对象是global，不够统一，为了能让同一段代码都指向顶级对象，只能用this。但这也是有问题的：
+
+1.全局环境中：this返回顶级对象，但在ES6和node中，this返回的是当前模块
+
+2.函数中，如果函数不是作为对象属性运行，即只是单纯的函数运行，则this指向顶层对象，但在严格模式下，this会返回undefined。
+
+3.无论在那种模式下，*new Function('return this')()* 总是会返回全局对象。
+
+总之很难找到一种方法能在多有情况下都可取到全局对象，所以ES6就出现了global，通过这个对象，就可以拿到全局对象
 
 
 
