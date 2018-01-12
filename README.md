@@ -13,4 +13,6 @@ ES5是对ES3的小幅升级，ES3就是我们刚开始接触JavaScript时候学�
 
 ECMA2015开始就是ES6了，包括ECMA2016，ECMA2017都属于ES6。
 
+## 1.let和const
+ 文档：[letAndConst](./startLearning/LetAndConst/letAandConst.md)
 
